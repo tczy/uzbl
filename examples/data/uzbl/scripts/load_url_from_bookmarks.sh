@@ -6,7 +6,7 @@
 file=${XDG_DATA_HOME:-$HOME/.local/share}/uzbl/bookmarks
 [ -r "$file" ] || exit
 COLORS=" -nb #303030 -nf khaki -sb #CCFFAA -sf #303030"
-FONT=" -fn -*-terminus-medium-*-*-*-12-*-*-*-*-*-*-*"
+FONT=" -fn -*-sans-*-*-*-*-*-*-*-*-*-*-*-*"
 if dmenu --help 2>&1 | grep -q '\[-rs\] \[-ni\] \[-nl\] \[-xs\]'
 then  # dmenu has vertical patch
 	DMENU="dmenu -i -xs -rs -l 10"
