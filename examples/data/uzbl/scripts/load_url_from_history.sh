@@ -6,7 +6,7 @@ history_file=${XDG_DATA_HOME:-$HOME/.local/share}/uzbl/history
 # choose from all entries, sorted and uniqued
 # goto=`awk '{print $3}' $history_file | sort -u | dmenu -i`
 COLORS=" -nb #303030 -nf khaki -sb #CCFFAA -sf #303030"
-FONT=" -fn -*-terminus-medium-*-*-*-12-*-*-*-*-*-*-*"
+FONT=" -fn -*-sans-*-*-*-*-*-*-*-*-*-*-*-*"
 if dmenu --help 2>&1 | grep -q '\[-rs\] \[-ni\] \[-nl\] \[-xs\]';
 then
         DMENU="dmenu -i -xs -rs -l 10" # vertical patch
