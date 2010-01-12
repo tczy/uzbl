@@ -12,7 +12,7 @@ then
         DMENU="dmenu -i -xs -rs -l 10" # vertical patch
         # choose an item in reverse order, showing also the date and page titles
         # pick the last field from the first 3 fields. this way you can pick a url (prefixed with date & time) or type just a new url.
-        goto=`tac $history_file | $DMENU $FONT $COLORS | cut -d ' ' -f -3  | awk '{print $NF}'`
+	goto=`tac $history_file | awk '{printf "%s %s %-100s", \$1, \$2, \$3; for (i=4;i<=NF;i++) printf "%s ", \$i; printf "\n"}' | $DMENU $FONT $COLORS | cut -d ' ' -f -3  | awk '{print $NF}'`
 else
         DMENU="dmenu -i"
 	# choose from all entries (no date or title), the first one being current url, and after that all others, sorted and uniqued, in ascending order
