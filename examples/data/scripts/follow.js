@@ -193,38 +193,43 @@ function reDrawHints(elems, chars) {
 // pass: number of keys
 // returns: key length
 function labelLength(n) {
-	var oldn = n;
-	var keylen = 0;
-	if(n < 2) {
-		return 1;
-	}
-	n -= 1; // our highest key will be n-1
-	while(n) {
-		keylen += 1;
-		n = Math.floor(n / charset.length);
-	}
-	return keylen;
+    var oldn = n;
+    var keylen = 0;
+    if(n < 2) {
+	return 1;
+    }
+    n -= 1; // our highest key will be n-1
+    while(n) {
+	keylen += 1;
+	n = Math.floor(n / charset.length);
+    }
+    return keylen;
 }
 // pass: number
 // returns: label
 function intToLabel(n) {
-	var label = '';
-	do {
-		label = charset.charAt(n % charset.length) + label;
-		n = Math.floor(n / charset.length);
-	} while(n);
-	return label;
+    var label = '';
+    do {
+	label = charset.charAt(n % charset.length) + label;
+	n = Math.floor(n / charset.length);
+    } while(n);
+    return label;
 }
 // pass: label
 // returns: number
 function labelToInt(label) {
-	var n = 0;
-	var i;
-	for(i = 0; i < label.length; ++i) {
-		n *= charset.length;
-		n += charset.indexOf(label[i]);
+    var n = 0;
+    var hit;
+    var i;
+    for(i = 0; i < label.length; ++i) {
+	hit = charset.indexOf(label[i]);
+	if (hit >= 0) {
+	    n *= charset.length;
+	    n += hit;
 	}
-	return n;
+	else n = 32767;  // so many links are unlikely to be on a page
+    }
+    return n;
 }
 //Put it all together
 function followLinks(follow) {
@@ -263,8 +268,7 @@ function followLinks(follow) {
     }
 }
 
-//Parse input: first argument is user input, second is defined hint keys.
+//Parse input: first argument is follow keys, second is user input.
 var args = '%s'.split(' ');
-var charset = args[1];
-
-followLinks(args[0]);
+var charset = args[0];
+followLinks(args[1]);
