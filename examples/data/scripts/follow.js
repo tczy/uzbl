@@ -227,7 +227,10 @@ function labelToInt(label) {
 	    n *= charset.length;
 	    n += hit;
 	}
-	else n = 32767;  // so many links are unlikely to be on a page
+	else {
+	    n = -1;
+	    removeAllHints();
+	}
     }
     return n;
 }
