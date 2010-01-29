@@ -219,10 +219,15 @@ function intToLabel(n) {
 // returns: number
 function labelToInt(label) {
     var n = 0;
+    var hit;
     var i;
     for(i = 0; i < label.length; ++i) {
-	n *= charset.length;
-	n += charset.indexOf(label[i]);
+	hit = charset.indexOf(label[i]);
+	if (hit >= 0) {
+	    n *= charset.length;
+	    n += hit;
+	}
+	else n = 32767;  // so many links are unlikely to be on a page
     }
     return n;
 }
